@@ -1,0 +1,134 @@
+	*{
+		margin: 0px;
+		padding: 0px;
+	}
+	body,html{
+		width: 100%;
+		height: 100%;
+		display: flex;
+		-webkit-display:flex;
+		flex-direction: column;
+	}
+			.box{
+				width: 100%;
+				flex: 1;
+				margin: auto;
+			}
+			.box_logo{
+				width: 100%;
+				/*height: 46px;*/
+				line-height:30px;
+				text-align: center;
+				font-size: 1.6rem;
+				margin: auto;
+				color: #00C256;
+			}
+			.box_mian{
+				width: 100%;
+				height: auto;
+				margin: auto;
+				margin-top: 10px;
+			}
+			.box_input>input,.box_input_1>input,.box_input_2>input,.box_input_3>input,.box_input_4>input,.box_input_5>input,.box_input_6>input,.box_input_8>input,.box_input_7>input{
+				width: 90%;
+				height: 40px;
+				margin: auto 15px;
+				border: none;
+				outline: none;
+				border-bottom: 1px solid gainsboro;
+				padding-left: 30px;
+				box-sizing: border-box;
+			}
+			.box_input>input:nth-of-type(1){
+				background: url(../img/postition.png) no-repeat left;
+				background-position-x: 10px;
+			}
+			.box_input>.pos_img{
+				float: right;
+				margin-right: 30px;
+				margin-top: -25px;
+			}
+			.box_input_2>input{
+				background: url(../img/user.png) no-repeat left;
+				background-position-x: 10px;
+			}
+			.box_input_3>input{
+				background: url(../img/phone.png) no-repeat left;
+				background-position-x: 10px;
+			}
+			.box_input_4>input{
+				background: url(../img/time.png) no-repeat left;
+				background-position-x: 10px;
+			}
+			.yuan{
+				display: inline;
+				float: right;
+				margin-top: -30px;
+				margin-right: 25px;
+				color: #00C256;
+			}
+			.box_input_5>input{
+				background: url(../img/F_m.png) no-repeat left;
+				background-position-x: 10px;
+			}
+			.box_input_4>.time_img{
+				float: right;
+				margin-right: 30px;
+				margin-top: -25px;
+			}
+			.box_input_6>input{
+				background: url(../img/price.png) no-repeat left;
+				background-position-x: 10px;
+			}
+			.box_input_8>input{
+				background: url(../img/pass.png) no-repeat left;
+				background-position-x: 10px;
+			}
+			.box_input_7>input{
+				background: url(../img/phone.png) no-repeat left;
+				background-position-x: 10px;
+			}
+			.share{
+				color: gainsboro;
+				font-size: 12px;
+				display: inline-block;
+				cursor: pointer;
+				text-decoration: none;
+			}
+			.user_x{
+				width: 90%;
+				height:auto;
+				margin: auto;
+				margin-top: 10px;
+				margin-left:15px;
+			}
+			.check{
+				width: 15px;
+				height: 15px;
+				border:1px solid gray;
+			}
+			.btn{
+				
+				width: 100%;
+				height: 46px;
+				line-height:46px;
+				background: #00C256;
+				text-align:center;
+				color: white;
+				border: none;
+				
+			}
+			@media only screen and (min-width:  320px) and (max-width: 375px) {
+				.btn{
+					
+					width: 100%;
+					height: 46px;
+					line-height:46px;
+					text-align:center;
+					background: #00C256;
+					text-align:center;
+					color: white;
+					border: none;
+					
+				}
+			}

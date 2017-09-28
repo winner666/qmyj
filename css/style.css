@@ -1,0 +1,768 @@
+box_img#img{
+	margin-left: 22%;
+	margin-top: 25%;
+	border-radius: 50%;
+}
+#p{
+	margin-top: 30px;
+	color: black;
+	font-size: 1.8rem;
+	font-weight: 500px;
+}
+#box_img{
+	position: relative;
+	width: 100px;
+	height: 120px;
+	margin: auto;
+	margin-top: 15px;
+	/*margin-bottom: 20px;*/
+}
+/*#box_img>img{
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	/*border-radius: 50%;*/
+}*/
+/*#QMYJ{
+	position: absolute;
+	font-size: 1.8rem;
+	color: #2AC845;
+	left: 25%;
+	right: 25%;
+	top: 150px;
+	text-align: center;
+}*/
+#box{
+	position: absolute;
+	width: 100%;
+	height: auto;
+	margin-top: 10px;
+	border: none;
+}
+.btn{
+	position: absolute;
+	width: 100%;
+	height: 46px;
+	background: #2AC845;
+	bottom: 0px;
+	text-align: center;
+	color: white;
+	line-height: 46px;
+	bottom: 0px;
+}
+.hr{
+	width: 90%;
+	margin: auto;
+	border-bottom: 1px solid gainsboro;
+}
+.add{
+	margin-top: 12px;
+	margin-left: 10px;
+	margin-right: 15px;
+}
+.right{
+	position: absolute;
+	margin-top: 15px;
+	right: 10px;
+}
+.del{
+	right: 10px;
+	margin-top: -25px;
+	font-size: 0.8rem;
+	
+}
+#sapn{
+	float: right;
+	margin-top: -25px;
+	color: #2AC845;
+}
+.banner{
+	width: 100%;
+	height: auto;
+}
+.erweima{
+	width: 200px;
+	height: 200px;
+	margin: auto;
+	margin-top: 50px;
+}
+.erweima>img{
+	width: 200px;
+	height: 200px;
+	margin: auto;
+}
+
+.ui-alert {
+	text-align: center;
+	padding: 20px 10px;
+	font-size: 16px;
+}
+#ph{
+	position: absolute;
+	color: red;
+	right: 0px;
+	margin-top: 10px;
+}
+.Zdinput{
+	border: none;
+}
+.Zd_btn{
+	width: 100px;
+	height: 30px;
+	float: right;
+	background: #2AC845;
+	color: white;
+	border-radius:5px;
+	margin-top: 5px;
+	margin-right: 20px;
+}
+/*公司简介*/
+.My_box{
+	width: 100px;
+	height: 100px;
+	margin: auto;
+}
+#img_my{
+	width: 100px;
+	height: 100px;
+	margin: auto;
+}
+.box_banner{
+	width: 100%;
+	height: auto;
+}
+.box_banner>img{
+	width: 100%;
+	height: auto;
+}
+.contact_box{
+	padding-top: 40px;
+	width: 100px;
+	height: 100px;
+	margin: auto;
+}
+/*order订单*/
+.order_box{
+	width: 100%;
+	height: 50px;
+	background: white;
+	display: -webkit-box;
+	border-bottom: 1px solid gainsboro;
+}
+.order_sbq{
+	width: 90%;
+	margin: auto;
+	display: -webkit-box;
+}
+.order_one{
+	-webkit-box-flex: 1;
+	background: url(../img/33.png)no-repeat left;
+}
+.order_one>img{
+	margin-top: 20px;
+	margin-left: 15px;
+}
+.order_two{
+	-webkit-box-flex: 1;
+	background: url(../img/35.png) no-repeat left;
+	background-position-x:1px;
+}
+.order_two>img{
+	margin-top: 20px;
+	margin-left: 20px;
+}
+.order_three{
+	-webkit-box-flex: 1;
+	background: url(../img/37.png) no-repeat right;
+	background-position-x: 10px;
+}
+.order_three>p{
+	margin-top: 30px;
+}
+.order_xq{
+	width: 100%;
+	height: 145px;
+	background: white;
+	margin-bottom: 5px;
+	border-bottom: 1px solid gainsboro;
+}
+.order_txt{
+	width: 90%;
+	height: 115px;
+	border-bottom: 1px solid gainsboro;
+	margin: auto;
+}
+.order_txt>p{
+	color: #1b1a1f;
+	font-size: 1.0rem;
+	padding-top: 15px;
+}
+.order_txt>span:nth-of-type(1){
+	background: url(../img/user_bf.png)no-repeat;
+	padding-left: 20px;
+	color: #AAAAAA;
+	font-size: 0.8rem;
+}
+.order_txt>span:nth-of-type(2){
+	background: url(../img/phone_bf.png)no-repeat;
+	padding-left: 20px;
+	color: #AAAAAA;
+	font-size: 0.8rem;
+	margin-left: 5px;
+}
+.order_txt>span:nth-of-type(3){
+	background: url(../img/time_bf.png)no-repeat;
+	padding-left: 20px;
+	color: #AAAAAA;
+	font-size: 0.8rem;
+}
+.order_txt>span:nth-of-type(4){
+	background: url(../img/fm_bf.png)no-repeat;
+	padding-left: 20px;
+	color: #f5818a;
+	font-size: 0.8rem;
+}
+.order_txt>span:nth-of-type(5){
+	background: url(../img/price_bf.png)no-repeat;
+	padding-left: 20px;
+	color: #f5818a;
+	font-size: 0.8rem;
+	margin-left: 5px;
+}
+.order_txt>span:nth-of-type(6){
+	background: url(../img/postition_bf.png)no-repeat;
+	padding-left: 20px;
+	color: #AAAAAA;
+	font-size: 0.8rem;
+}
+.order_btn{
+	width: 115px;
+	height: 22.5px;
+	float: right;
+	background: #9b9b9b;
+	color: white;
+	font-size: 0.4rem;
+	text-align: center;
+	line-height: 22.5px;
+	margin-top: 3.5px;
+	border-radius: 5px;
+	margin-right: 15px;
+}
+.order_xq_2{
+	width: 100%;
+	height: 165px;
+	background: white;
+	margin-bottom: 5px;
+	border-bottom: 1px solid gainsboro;
+}
+
+.order_xq_3{
+	width: 100%;
+	height: 200px;
+	background: white;
+	margin-bottom: 5px;
+	border-bottom: 1px solid gainsboro;
+}
+.order_in{
+	width: 90%;
+	height: 50px;
+	margin: auto;
+}
+.order_in>p{
+	color: #1b1a1f;
+}
+.order_in>span:nth-of-type(1){
+	background: url(../img/user_bf.png)no-repeat;
+	padding-left: 20px;
+	color: #AAAAAA;
+	font-size: 0.8rem;
+	clear: all;
+}
+.order_in>span:nth-of-type(2){
+	background: url(../img/phone_bf.png)no-repeat;
+	padding-left: 20px;
+	color: #AAAAAA;
+	font-size: 0.8rem;
+	margin-left: 20px;
+}
+.order_pj{
+	width: 90%;
+	height: 50px;
+	margin: auto;
+	border-bottom:1px solid gainsboro ;
+}
+.order_pj>p{
+	color: #1b1a1f;
+}
+.order_pj>span:nth-of-type(1){
+	background: url(../img/user_bf.png)no-repeat;
+	padding-left: 20px;
+	color: #AAAAAA;
+	font-size: 0.8rem;
+	clear: all;
+}
+.order_pj>span:nth-of-type(2){
+	background: url(../img/phone_bf.png)no-repeat;
+	padding-left: 20px;
+	color: #AAAAAA;
+	font-size: 0.8rem;
+	margin-left: 20px;
+}
+.order_all_btn{
+	float: right;
+	width: 115px;
+	height: 22.5px;
+	background: #00c256;
+	color: white;
+	font-size: 0.4rem;
+	text-align: center;
+	line-height: 22.5px;
+	margin-top: 3.5px;
+	border-radius: 5px;
+	margin-right: 15px;
+}
+/*失败页面fail*/
+.fail_bg{
+	width: 100%;
+	height: 220px;
+	margin: auto;
+	background: #00c256;
+}
+.fail_img{
+	width: 76px;
+	height: 76px;
+	margin: auto;
+}
+.fail_img>img{
+	margin-top: 50px;
+}
+.fail_content{
+	color: white;
+	text-align: center;
+	margin-top: 60px;
+	font-size: 1.3rem;
+}
+.fail_btn{
+	width: 70%;
+	height: 30px;
+	margin: 15PX auto;
+}
+.fail_up{
+	width: 90px;
+	height: 25px;
+	border: 1px solid white;
+	border-radius: 5px;
+	text-align: center;
+	line-height: 25px;
+	color: white;
+	float: left;
+	margin-left: 20px;
+}
+.fail_again{
+	width: 90px;
+	height: 25px;
+	border: 1px solid white;
+	border-radius: 5px;
+	text-align: center;
+	line-height: 25px;
+	color: white;
+	float: right;
+	margin-right: 20px;
+}
+/*success成功订单*/
+.success_bg{
+	width: 100%;
+	height: 220px;
+	margin: auto;
+	background: #00c256;
+}
+.success_img{
+	width: 76px;
+	height: 76px;
+	margin: auto;
+}
+.success_img>img{
+	margin-top: 50px;
+}
+.success_content{
+	color: white;
+	text-align: center;
+	margin-top: 60px;
+	font-size: 1.3rem;
+}
+.success_btn{
+	width: 70%;
+	height: 30px;
+	margin: auto;
+}
+.success_again{
+	width: 130px;
+	height: 25px;
+	border: 1px solid white;
+	border-radius: 5px;
+	text-align: center;
+	line-height: 25px;
+	color: white;
+	margin: auto;
+	margin-top: 15px;
+}
+.order_sc{
+	width: 100%;
+	height: 210px;
+	background: white;
+	margin-top: 5px;
+}
+.order_xq_sc{
+	height: 30px;
+	padding-left: 10px;
+	line-height: 30px;
+	border-bottom: 1px solid #EEEEEE;
+}
+.Smal_box{
+	width: 100%;
+	height: auto;
+	padding-bottom: 15px;
+	border-bottom:1px solid gainsboro ;
+}
+.Sm_one{
+	width: 100%;
+	height: auto;
+	margin: auto;
+	display: -webkit-box;
+	color: #797979;
+	font-size: 12px;
+	margin-top: 5px;
+}
+.SM_p{
+	-webkit-box-flex: 1;
+}
+.SM_p>img{
+	padding-left: 10px;
+	padding-right: 5px;
+}
+.SM_s{
+	-webkit-box-flex: 1;
+}
+.SM_a{
+	-webkit-box-flex: 1;
+}
+.S_sa{
+	width: 100%;
+	height: auto;
+	margin: auto;
+	display: -webkit-box;
+	margin-top: 10px;
+	font-size: 12px;
+	color: #FF5053;
+}
+.Sq_img{
+	-webkit-box-flex: 1;
+	padding-left: 10px;
+}
+.sa_imgs{
+	-webkit-box-flex: 3;
+	text-align: left;
+	/*padding-right: 50px;*/
+}
+.sa_add{
+	margin-top: 10px;
+	padding-left: 10px;
+	font-size: 12px;
+}
+.Xd_fs{
+	padding-left: 10px;
+	height: 30px;
+	line-height: 30px;
+	border-bottom: 1px solid gainsboro;
+}
+.Xd_time{
+	padding-left: 10px;
+	height: 30px;
+	line-height: 30px;
+	background: #ffffff;
+	border-bottom: 1px solid gainsboro;
+}
+/*assess评价*/
+.assess_first{
+	width: 100%;
+	height: 40px;
+	background: url(../img/67.png) no-repeat left;
+	background-position-x: 20px;
+	background-color: #FFFFFF;
+	border-bottom: 1px solid gainsboro;
+	padding-left: 50px;
+	line-height: 40px;
+	font-size: 0.9rem;
+	text-align: left;
+	color: #000000;
+}
+.assess_box{
+	width: 100%;
+	height: 40px;
+	background: white;
+	display: -webkit-box;
+	border-bottom: 1px solid gainsboro;
+}
+.assess_box>div:nth-of-type(1){
+	-webkit-box-flex: 1;
+	background: url(../img/66.png) no-repeat center;
+	text-align: center;
+	padding-left: 50px;
+	line-height: 40px;
+	color: #626262;
+	font-size: 0.8rem;
+}
+.assess_box>div:nth-of-type(2){
+	-webkit-box-flex: 1;
+	background: url(../img/65.png) no-repeat center;
+	text-align: center;
+	padding-left: 50px;
+	line-height: 40px;
+	color: #626262;
+	font-size: 0.8rem;
+}
+.assess_box>div:nth-of-type(3){
+	-webkit-box-flex: 1;
+	background: url(../img/65.png) no-repeat center;
+	text-align: center;
+	padding-left: 50px;
+	line-height: 40px;
+	color: #626262;
+	font-size: 0.8rem;
+}
+/*.assess_1{
+	position: relative;
+}*/
+#star {
+	/*position: absolute;*/
+	margin-top: 10px;
+	width: 100%;
+	height: 40px;
+	border-bottom: 1px solid gainsboro;
+	background: white;
+}
+#star_2{
+	width: 100%;
+	height: 40px;
+	border-bottom: 1px solid gainsboro;
+	background: white;
+}
+#star_3{
+	width: 100%;
+	height: 40px;
+	background: white;
+	border-bottom: 1px solid gainsboro;
+}
+#star_4{
+	width: 100%;
+	height: 40px;
+	background: white;
+	border-bottom: 1px solid gainsboro;
+}
+#star_5{
+	width: 100%;
+	height: 40px;
+	background: white;
+	border-bottom: 1px solid gainsboro;
+}
+#star_6{
+	width: 100%;
+	height: 40px;
+	background: white;
+	border-bottom: 1px solid gainsboro;
+}
+#star>p{
+	float: left;
+	line-height: 40px;
+	padding-left: 10px;
+	color: #000000;
+	font-size: 1.0rem;
+	font-weight: 300px;
+}
+#star_2>p{
+	float: left;
+	color: #000000;
+	font-size: 1.0rem;
+	padding-left: 10px;
+	line-height: 20px;
+}
+#star_3>p{
+	float: left;
+	color: #000000;
+	font-size: 1.0rem;
+	padding-left: 10px;
+	padding-top:5px ;
+}
+#star_4>p{
+	float: left;
+	color: #000000;
+	font-size: 1.0rem;
+	padding-left: 10px;
+}
+#star_5>p{
+	float: left;
+	color: #000000;
+	font-size: 1.0rem;
+	padding-left: 10px;
+}
+#star_6>p{
+	float: left;
+	color: #000000;
+	font-size: 1.0rem;
+	padding-left: 10px;
+	margin-top: -10px;
+}
+#star ul {
+	float:left;
+	padding-left: 170px;
+	margin-top: -45px;
+	line-height: 30px;
+}
+#star_2 ul{
+	float:left;
+	padding-left: 170px;
+	margin-top: -45px;
+	line-height: 30px;
+}
+#star_3 ul{
+	float:left;
+	padding-left: 170px;
+	margin-top: -35px;
+	line-height: 30px;
+}
+#star_4 ul{
+	float:left;
+	padding-left: 170px;
+	margin-top: -35px;
+	line-height: 30px;
+}
+#star_5 ul{
+	float:left;
+	padding-left: 170px;
+	margin-top: -35px;
+	line-height: 30px;
+}
+#star_6 ul{
+	float:left;
+	padding-left: 170px;
+	margin-top: -35px;
+	line-height: 30px;
+}
+#star li {
+	float:left;
+	cursor:pointer;
+	text-indent:-9999px;
+	background:url(../img/star.png) no-repeat;
+	background-position-y: 10px;
+	padding-left: 35px;
+}
+#star_2 li{
+	float:left;
+	cursor:pointer;
+	text-indent:-9999px;
+	background:url(../img/star.png) no-repeat;
+	background-position-y: 10px;
+	padding-left: 35px;
+}
+#star_3 li{
+	float:left;
+	cursor:pointer;
+	text-indent:-9999px;
+	background:url(../img/star.png) no-repeat;
+	background-position-y: 10px;
+	padding-left: 35px;
+}
+#star_4 li{
+	float:left;
+	cursor:pointer;
+	text-indent:-9999px;
+	background:url(../img/star.png) no-repeat;
+	background-position-y: 10px;
+	padding-left: 35px;
+}
+#star_5 li{
+	float:left;
+	cursor:pointer;
+	text-indent:-9999px;
+	background:url(../img/star.png) no-repeat;
+	background-position-y: 10px;
+	padding-left: 35px;
+}
+#star_6 li{
+	float:left;
+	cursor:pointer;
+	text-indent:-9999px;
+	background:url(../img/star.png) no-repeat;
+	background-position-y: 10px;
+	padding-left: 35px;
+}
+#star strong {
+	color:#f60;
+	padding-left:10px;
+}
+#star li.on {
+	background-position:0 -15px;
+}
+#star_2 li.one{
+	background-position:0 -15px;
+}
+#star_3 li.one{
+	background-position:0 -15px;
+}
+#star_4 li.one{
+	background-position:0 -15px;
+}
+#star_5 li.one{
+	background-position:0 -15px;
+}
+#star_6 li.one{
+	background-position:0 -15px;
+}
+.assess_btn{
+	position: absolute;
+	width: 100%;
+	height: 45px;
+	bottom: 0px;
+	text-align: center;
+	color: white;
+	background: #00c256;
+	line-height: 45px;
+}
+/*用户评价*/
+.Mpj_box{
+	width: 100%;
+	height: auto;
+}
+.MPJ_one{
+	height: 120px;
+	padding:5px 10px;
+	border-bottom: 1px solid gainsboro;
+}
+.MPJ_Text{
+	width: 80%;
+	height: auto;
+	float: right;
+}
+.MJ_user{
+	height: 20px;
+}
+.labi{
+	margin-top: 0px;
+	display: inline-block;
+}
+.MPJ_time{
+	margin-top: 0px;
+	display: inline-block;
+	text-align: right;
+	margin-left: 45%;
+	font-size: 12px;
+	color: darkgray;
+}
+
+.pj_text{
+	height: auto;
+	line-height: 20px;
+	margin-top: 5px;
+	font-size: 12px;
+	color: darkgray;
+}

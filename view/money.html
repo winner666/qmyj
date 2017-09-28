@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>提现</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style>
+			*{padding:0;margin: 0;}
+			body{
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				background:#EEEEEE ;
+			}
+			.box{
+				background: #fff;
+			}
+			input{
+				outline: none;
+				border-radius: 5px;
+				height:25px;
+				line-height: 25px;
+				border: none;
+			}
+			.ti{
+				margin-top: 10px;
+				border-bottom: 1px solid #EEEEEE;
+				padding:0 0 10px 20px;
+			}
+			.shou{
+				padding-top:10px;
+				margin-left:20px;
+			}
+			.btn{
+				
+				margin:30px 5%;
+				background: #00C256;
+				color: #fff;
+				text-align: center;
+				line-height: 40px;			
+				border-radius: 5px;
+			}
+			.yu{
+				margin-left: 20px;
+				line-height: 30px;
+				color: #b0b3b6;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="shou">
+				<span>
+					你的提现金额
+				</span>
+				
+			</div>
+			<div class="ti">
+				<span>￥</span>
+				<input type="number" min='0' class="tiMoney" placeholder="1元起步"/>
+			</div>
+			<div class="yu">
+				<span>余额￥</span>
+				<span class="yuMoney">0</span>
+			</div>
+			
+		</div>
+		<div class="btn">提现</div>
+		<script type="text/javascript" src="../mui/js/jquery-2.2.3.min.js"></script>
+		<script type="text/javascript" src="../js/ip.js"></script>
+		<script>
+			
+$(function(){
+	var money=localStorage.getItem('money')
+	$('.yuMoney').html(money)
+})
+	
+	function balance(openid,tiMoney,address,nickname){
+	
+		$.ajax({
+			type: "POST",								
+			url: hua + "userWechatController/withdrawals.do",								
+			contentType:'application/json;charset=utf-8',
+			dataType: "JSON",
+			data:JSON.stringify({
+				"openid": openid,
+				"balance":tiMoney,
+				 "Address":address,
+				 "userName":nickname,
+				 "moblNo":''
+				
+			}),
+			success: function(data) {
+				console.log(data)
+				if(data.code==001){
+					alert(data.message)
+				}else if(data.code==002){
+					alert(data.message)
+				}else if(data.code==003){
+					alert(data.message)
+				}else if(data.code==201){
+					alert(data.message)
+				}else if(data.code==0000){
+					alert(data.message)
+				}
+			}
+		})
+	}
+			
+			
+			
+			$('.btn').on('click',function(){
+				var tiMoney=parseFloat($('.tiMoney').val());
+				var yuMoney=parseFloat($('.yuMoney').html());
+				var openid=JSON.parse(localStorage.getItem("myopenId"));
+				
+				var country=localStorage.getItem('country');
+				var province=localStorage.getItem('province');
+				var city=localStorage.getItem('city');
+				var address=country+province+city;
+				var nickname=localStorage.getItem('nickname');
+				if(tiMoney==''){
+					alert('请输入提现金额');
+					return;
+				}
+				if(tiMoney<0 ||tiMoney>yuMoney){
+				  alert('请输入正确提现金额');
+				  return;
+				}				
+				balance(openid,tiMoney,address,nickname)
+			})
+		</script>
+	</body>
+</html>

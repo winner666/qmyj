@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<style>
+			* {
+				margin: 0px;
+				padding: 0px;
+			}
+		</style>
+	</head>
+
+	<body bgcolor="#EEEEEE">
+		<div class="success_bg">
+			<div class="success_img">
+				<img src="../img/success.png" />
+			</div>
+			<p class="success_content">订单支付成功</p>
+			<div class="success_btn">
+				<div class="success_again">返回我要治理</div>
+			</div>
+		</div>
+
+		<div class="order_sc" id="order">
+			<p class="order_xq_sc">订单详情</p>
+			<div class="Smal_box">
+				<p style="padding:5px 10px;" id="Id">订单编号：</p>
+				<div class="Sm_one">
+					<p class="SM_p">
+						<img src="../img/user_bf.png" />
+						<span  id="order_name"></span>
+					</p>
+					<p class="SM_s">
+						<img src="../img/phone_bf.png" />
+						<span id="TEL"></span>
+					</p>
+					<p class="SM_a">
+						<img src="../img/time_bf.png" />
+						<span id="order_time"></span>
+					</p>
+				</div>
+				<div class="S_sa">
+					<p class="Sq_img">
+						<img src="../img/fm_bf.png" />
+						<span id="order_PM"></span>
+					</p>
+					<p class="sa_imgs">
+						<img src="../img/price_bf.png" />
+						<span id="Order_RMB"></span>
+					</p>
+				</div>
+				<p class="sa_add">
+					<img src="../img/postition_bf.png" />
+					<span id="order_address"></span>
+				</p>
+			</div>
+			<p class="Xd_fs">
+				交易方式：
+				<a style="color: #ACACB4; font-size: 12px;" id="order_zhifu">微信支付</a>
+			</p>
+			<p class="Xd_time">
+				下单时间：
+				<a style="color: #ACACB4; font-size: 12px;"id="Xd_orderTime"></a>
+			</p>
+		</div>
+		<script type="text/javascript" src="../mui/js/jquery-1.8.3.js"></script>
+		<script type="text/javascript" src="../js/doT.js" ></script>
+		<script type="text/javascript" src="../js/weixin-1.2.0.js" ></script>
+		<script>
+				$(document).ready(function(){
+					var name = JSON.parse(localStorage.getItem("name"));   //用户名
+					var tel = JSON.parse(localStorage.getItem("tel"));   //用户tel
+					var mianji=JSON.parse(localStorage.getItem("mianji"));
+					var price=JSON.parse(localStorage.getItem("price"));
+					var Ctime=JSON.parse(localStorage.getItem("Ctime"));//创建订单时间
+					var positions=JSON.parse(localStorage.getItem("positions"));
+					var order=JSON.parse(localStorage.getItem("order"));
+					var Dtime=JSON.parse(localStorage.getItem("time"));//预约时间
+//					console.log(Dtime+"我的下单时间");
+//					alert(Dtime+"我的下单时间");
+//					//转换时间格式
+//					localStorage.setItem("name", JSON.stringify(name));
+//					localStorage.setItem("tel", JSON.stringify(tel));
+//					var Zd_tel=JSON.parse(localStorage.getItem("Zd_tel"));
+					$("#Id").append(order);
+					$("#order_name").html(name);
+					$("#TEL").html(tel);
+					$("#order_time").html(Dtime);
+					$("#order_PM").html(mianji+"㎡");
+					$("#Order_RMB").html(price+"元");
+					$("#order_address").html(positions);
+					$("#Xd_orderTime").html(Ctime);
+//					
+				 });
+//				 $(".success_again").click(function(){
+//				 	var url="sq.html";
+//				 	window.location.href="url";
+//				 })
+		</script>
+
+	</body>
+
+</html>

@@ -1,0 +1,17 @@
+# ide 
+*.iml
+.idea
+.vscode
+.project
+.atom
+
+
+# mac os
+.DS_Store
+
+# log
+*.log
+
+# node_modules
+node_modules/
+bower_components/

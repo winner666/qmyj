@@ -1,0 +1,246 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>我的评价</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" href="../css/index.css" />
+	<link rel="stylesheet" href="../fonts/iconfont.css">
+	<script type="text/javascript" src="../js/weixin-1.2.0.js" ></script>
+	<script type="text/javascript" src="../mui/js/jquery-1.8.3.js" ></script>
+</head>
+<body>
+	<div class="body">
+		<div class="title">
+			<img src="../img/67.png" alt="">
+			<span>服务评分</span>
+		</div>
+		<div id="form">
+			<div class="main">
+				<!--评分-好-中-差-->
+				<ul class="score">
+					<li class="score-good">
+						<img src="../img/66.png" alt="">
+						<span>好评</span>
+					</li>
+					<li class="score-secondary">
+						<img src="../img/65.png" alt="">
+						<span>中评</span>
+					</li>
+					<li class="score-Bad">
+						<img src="../img/65.png" alt="">
+						<span>差评</span>
+					</li>
+				</ul>
+				<!--评分-打星-->
+				<ul class="daxing">
+					<li>
+						<span>按时上门</span>
+						<div>
+							<i rel="1" class="iconfont icon-xx"></i>
+							<i rel="2" class="iconfont icon-xx"></i>
+							<i rel="3" class="iconfont icon-xx"></i>
+							<i rel="4" class="iconfont icon-xx"></i>
+							<i rel="5" class="iconfont icon-xx"></i>
+							<input type="hidden" name="One" value="">
+						</div>
+					</li>
+					<li>
+						<span>着装整洁</span>
+						<div>
+							<i rel="1" class="iconfont icon-xx"></i>
+							<i rel="2" class="iconfont icon-xx"></i>
+							<i rel="3" class="iconfont icon-xx"></i>
+							<i rel="4" class="iconfont icon-xx"></i>
+							<i rel="5" class="iconfont icon-xx"></i>
+							<input type="hidden" name="Two" value="">
+						</div>
+					</li>
+					<li>
+						<span>出示工作证</span>
+						<div>
+							<i rel="1" class="iconfont icon-xx"></i>
+							<i rel="2" class="iconfont icon-xx"></i>
+							<i rel="3" class="iconfont icon-xx"></i>
+							<i rel="4" class="iconfont icon-xx"></i>
+							<i rel="5" class="iconfont icon-xx"></i>
+							<input type="hidden" name="Three" value="">
+						</div>
+					</li>
+					<li>
+						<span>礼貌服务</span>
+						<div>
+							<i rel="1" class="iconfont icon-xx"></i>
+							<i rel="2" class="iconfont icon-xx"></i>
+							<i rel="3" class="iconfont icon-xx"></i>
+							<i rel="4" class="iconfont icon-xx"></i>
+							<i rel="5" class="iconfont icon-xx"></i>
+							<input type="hidden" name="Four" value="">
+						</div>
+					</li>
+					<li>
+						<span>认真仔细</span>
+						<div>
+							<i rel="1" class="iconfont icon-xx"></i>
+							<i rel="2" class="iconfont icon-xx"></i>
+							<i rel="3" class="iconfont icon-xx"></i>
+							<i rel="4" class="iconfont icon-xx"></i>
+							<i rel="5" class="iconfont icon-xx"></i>
+							<input type="hidden" name="Five" value="">
+						</div>
+					</li>
+					<li>
+						<span>施工后检查并合格</span>
+						<div>
+							<i rel="1" class="iconfont icon-xx"></i>
+							<i rel="2" class="iconfont icon-xx"></i>
+							<i rel="3" class="iconfont icon-xx"></i>
+							<i rel="4" class="iconfont icon-xx"></i>
+							<i rel="5" class="iconfont icon-xx"></i>
+							<input type="hidden" name="Six" value="">
+						</div>
+					</li>
+				</ul>
+				<textarea class="textarea" rows="5" placeholder="亲!快来评价吧" ></textarea>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<button type="submit" id="submit">发布评价</button>
+	</div>
+</body>
+<script type="text/javascript" src="../js/ip.js" ></script>
+<script type="text/javascript">
+		//var F_name = localStorage.getItem("F_name");//获取施工人的姓名  
+		//var F_num = localStorage.getItem("F_num");//获取施工人电话
+//		alert(F_name);
+//		alert(F_num);
+	$(function(){
+		// 好中差评价
+		var score = '';
+		// 好中差评 点击事件
+		$('.score li').click(function(){
+			$(this).find('img').attr('src','../img/66.png');
+			$(this).siblings().find('img').attr('src','../img/65.png');
+			var val=$(this).find('span').text();
+			console.log(val)
+			score = val;
+		});
+		// 评星点击事件
+		$('.daxing li i').click(function(){
+			var rel=$(this).attr('rel')
+			$(this).css('color','#ff5b47').prevAll().css('color','#ff5b47');
+			$(this).nextAll().css('color','#D4D4D4');
+			var div=$(this).parents('div').children('input')
+				div.val(rel)
+				console.log(div.val())
+		})
+//		alert(score);
+		// form表单提交事件 收集信息
+		$('#submit').click(function(){
+			// 好中差评价
+			console.log(score)
+			// 按时上门 评星
+			var One=$('input[name=One]').val();
+			// 着装整洁 评星
+			var Two=$('input[name=Two]').val();
+			// 出示工作证 评星
+			var Three=$('input[name=Three]').val();
+			// 礼貌服务 评星
+			var Four=$('input[name=Four]').val();
+			// 认真仔细 评星
+			var Five=$('input[name=Five]').val();
+			// 施工后检查并合格 评星
+			var Six=$('input[name=Six]').val();
+			// 客户评价
+			var textarea=$('.textarea').val();
+			console.log(textarea)
+			console.log(One)
+			console.log(Two)
+			console.log(Three)
+			console.log(Four)
+			console.log(Five)
+			console.log(Six)
+			function GetRequest() { 
+						var url = location.search; //获取url中"?"符后的字串 
+						console.log(url);
+						var theRequest = new Object(); 
+						if (url.indexOf("?") != -1) { 
+							var str = url.substr(1).split("&"); 
+							for(var i = 0; i < str.length; i ++) { 
+								theRequest[str[i].split("=")[0]]=unescape(str[i].split("=")[1]); 
+							} 
+						} 
+						return theRequest; 
+					};
+			var Request = GetRequest();
+			var userId=Request.userId;
+			var orderNo1=Request.orderNo;
+			console.log(Request)
+			console.log(userId,orderNo1);
+			var nickname = JSON.parse(localStorage.getItem("nickname"));
+			var tel = JSON.parse(localStorage.getItem("tel"));
+			var headimgurl = JSON.parse(localStorage.getItem("headimgurl"));
+			var moblNo = JSON.parse(localStorage.getItem("moblNo"));
+			var _nickname=JSON.parse(nickname);
+			var _headimgurl=JSON.parse(headimgurl);
+			console.log(headimgurl);
+			console.log(orderNo1);
+			console.log(userId);
+			var _openid=JSON.parse(localStorage.getItem("myopenId"));
+			console.log(_openid);
+//			alert(_openid);
+//			var _openid=JSON.parse(openid);	
+			if(textarea==''){
+				alert('请输入评论')
+				return false;
+			}
+   			$.ajax({
+   				type:"POST",//请求方式
+   				url:hua+"EvaluationController/addEva.do",//接口路径
+   				async:true,//是否异步
+   				dataType: "JSON",//数据格式
+   				data:{//数据
+					orderNo:orderNo1,
+   					userId:userId,//工人id
+   					openId:_openid,//openid
+   					personname:_nickname,//用户昵称
+   					personimg:_headimgurl,//用户头像
+					account:tel,//用户电话
+   					evaluatecenter:textarea,//评价内容
+   					praise:score,//评价类型
+   					starscot:One,//星级
+   					starsneat:Two,//星级
+   					starsempcard:Three,//星级
+   					starspoliteness:Four,//星级
+   					starscarefully:Five,//星级 
+   					starsqualified:Six,//星级
+//					remark:remark
+   				},
+   				success: function(data) {//成功后
+					var code=JSON.stringify(data.code);
+					console.log(code);
+					if(code==0000){
+						alert("评价成功");
+						window.location.href="order.html";
+					}else{
+					
+						alert(JSON.stringify(data.message))
+					}
+   					
+					
+   				},
+   				error: function(XMLHttpRequest, textStatus, errorThrown) {//失败后
+   					
+   					console.log("网络错误");
+   					console.log(XMLHttpRequest.status);
+   					console.log(XMLHttpRequest.readyState);
+   					console.log(textStatus);
+   				}
+   			});
+			return false;
+		})
+	})
+</script>
+</html>

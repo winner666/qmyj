@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>取消订单</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			ul,li{padding:0;margin:0;}
+			body,html {
+				background: #EEEEEE;
+				height: 100%;
+				height: 100%;	
+				overflow: hidden;			
+			}
+			.box{
+				width: 100%;
+				height: 100%;
+			}
+			li{
+				list-style: none;
+			}
+			.icon{
+				float: left;
+			}
+			.icon img{				
+					width: 20px;
+					height: 25px;				
+			}
+			.titleBox{
+				width: 100%;
+				line-height: 25px;
+				float: left;
+				overflow: hidden;				
+				margin:15px;
+				height: 25px;
+			}
+			.title{
+				margin-left: 10px;
+			}
+			.text{
+				overflow: hidden;
+				background: #fff;
+				width: 100%;
+			}
+			.clear:after{content:'.';display:block;height:0;clear:both;visibility:hidden;}
+			.clear{zoom: 1;}
+			.text{
+				padding:5px 0;
+			}
+			.text li{
+				line-height: 20px;
+				margin-top:5px;
+				width: 100%;
+				
+			}
+			.text li:nth-child(1){
+				text-align:;
+			}
+			.text li i{
+				
+				float: left;
+				margin-left: 10px;
+			}
+			.text li span{
+				float: left;
+				margin-left: 5px;
+			}
+			.btn{
+				position: absolute;
+				bottom: 0;
+				width: 100%;
+				background: #00c256;
+				color: #fff;
+				text-align: center;
+				height: 50px;
+				line-height: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="titleBox clear">
+				<i class="icon">
+					<img src="../img/biaozhu.png"/>
+				</i>
+				<span class="title">取消订单</span>
+			</div>
+			<div class="text">
+				<ul >
+					<li class="clear">
+						<i class="sign" type='0'><img src="../img/weixuanzhong.png"/></i>
+						<span>我不需要除醛服务了</span>
+					</li>
+					<li class="clear">
+						<i class="sign" type='1'><img src="../img/weixuanzhong.png"/></i>
+						<span>我需要修改订单</span>
+					</li>
+					<li class="clear">
+						<i class="sign" type='2'><img src="../img/weixuanzhong.png"/></i>
+						<span>预计时间未施工</span>
+					</li>
+				</ul>
+			</div>
+			<div class="btn">确定</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../mui/js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="../js/ip.js"></script>
+	<script>
+		
+		   function GetRequest() {
+        var url = location.search; //获取url中"?"符后的字串
+        //console.log(url);
+        var theRequest = new Object();
+        if(url.indexOf("?") != -1) {
+            var str = url.substr(1).split("&");
+            for(var i = 0; i < str.length; i++) {
+                theRequest[str[i].split("=")[0]] = unescape(str[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    };
+    var Request = GetRequest();
+    var orderId = Request.orderId;
+    console.log(orderId)
+		
+		
+		
+		
+		var text='';
+		$('.sign').on('click',function(){
+			text=$(this).next().html();
+			console.log(text);
+			$(this).children('img').attr('src','../img/xuanzhong.png').parents('li').siblings().children('i').children('img').attr('src','../img/weixuanzhong.png')
+		})
+		
+		$('.btn').on('click',function(){
+			if(text==''){
+				alert('请先进行选择')
+			}else{
+				console.log(text,orderId)
+				$('.btn').css('background','#666666')
+				 $.ajax({
+								type: "POST",								
+								url: hua + "OrderInfoController/deleteOrder.do",								
+								contentType:'application/json;charset=utf-8',
+								dataType: "JSON",
+								data:JSON.stringify({
+									"orderNo":orderId,
+									"orderType":"00",
+									"oReason":text
+								}),
+								success: function(data) {
+									console.log(data)
+									if(data.code==1111){
+										alert('撤销失败')
+									}else if(data.code==0000){
+										
+										 location.href='order.html'
+									}
+								}
+							})
+			}
+		})
+	</script>
+</html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>甲醛治理</title>
+		<link rel="stylesheet" href="../css/share.css" />
+		<link rel="stylesheet" href="../css/jquery.datetimepicker.css" />
+		<link rel="stylesheet" href="../css/mui.picker.css" />
+		<link rel="stylesheet" href="../css/mui.poppicker.css" />
+		<script type="text/javascript" src="../js/weixin-1.2.0.js"></script>
+		<script type="text/javascript" src="../js/wx.qq.comopenjsjweixin-1.0.0.js.js"></script>
+	</head>
+
+	<body>
+		<div class="box">
+			<div class="box_logo">
+				单价<span class="everyPrice"></span>元/平方米（建筑面积）
+			</div>
+			<div class="box_mian">
+				<div class="box_input">
+					<input type="text" readonly="readonly" class="o" id="pos" placeholder="上海市-闵行区" value="上海市-长宁区" />
+					<img class="pos_img" id="pos_img" src="../img/right.png" />
+				</div>
+				<div class="box_input_1">
+					<input type="text" id="pos_xq" placeholder="输入施工的详细地址" />
+				</div>
+				<div class="box_input_2">
+					<input type="text" id="name" class="o" placeholder="输入联系人姓名" />
+				</div>
+				<div class="box_input_3">
+					<input type="number" id="tel" class="o" placeholder="输入联系人电话" />
+				</div>
+				<div class="box_input_4" id="mytime">
+					<input type="text" id="time" onfocus=this.blur() placeholder="输入预约时间" />
+					<img class="time_img" id="time_img" src="../img/right.png" />
+				</div>
+				<div class="box_input_5">
+					<input type="number" id="mianji" class="o" autoComplete='off' placeholder="输入建筑面积" />
+					<!--<p class="yuan">30元/㎡</p>-->
+				</div>
+				<div class="box_input_6">
+					<input type="text" readonly=readonly id="price" placeholder="施工面积的总价格价格" />
+				</div>
+				<div class="box_input_8">
+					<input type="text"  id="pass" placeholder="输入推荐码价格减半(自己推荐码无效)" />
+				</div>
+				<div class="box_input_7">
+					<input type="text" id="Zd_tel" class="o" placeholder="指定施工人的联系电话(选填)" />
+				</div>
+				<div class="user_x">
+					<input class="check" type="checkbox" checked=checked />
+					<a class="share" href="http://17s208e134.iask.in:13068/qmyjback/html/xieyi.html">我已阅读并同意用户协议
+						<p style="display: inline-block; color: #00C256;">《青木易家用户服务协议》</p>
+					</a>
+				</div>
+
+				<!--<div class="Zd_user" id="zd_use">
+					指定人
+				</div>-->
+			</div>
+
+		</div>
+		<div class="btn" id="btn">在线下单</div>
+		<script type="text/javascript" src="../mui/js/mui.js"></script>
+		<script type="text/javascript" src="../js/ip.js"></script>
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../mui/js/mui.picker.js"></script>
+		<script type="text/javascript" src="../mui/js/mui.poppicker.js"></script>
+		<script type="text/javascript" src="../mui/js/city.data.js"></script>
+		<script type="text/javascript" src="../mui/js/city.data-3.js"></script>
+		<script type="text/javascript" src="../mui/js/jquery-1.8.3.js"></script>
+		<script type="text/javascript" src="../js/jquery.datetimepicker.full.js"></script>
+		<script type="text/javascript" src="../pingpp-js-master/dist/pingpp.js"></script>
+		<script>
+			$(function() {
+
+				//发送授权请求，等待用户授权界面结束，请求后授权信息通过微信回调到后台，后台帮助获取用户信息
+				//					function GETurl(){
+				//window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8f600f6da5379290&redirect_uri=http://www.qianmocn.com/qmyj/view/shareAB.html&response_type=code&scope=snsapi_userinfo&state=reexjgs#wechat_redirect";
+				//window.location.href="https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx8f600f6da5379290&secret=4f0d57ce5457b486ab7b93bfd0f53380&code= "+code+"&grant_type=authorization_code";
+				//					}
+				//授权界面结束后紧接着向后台发送获取用户信息请求
+				//					获取openID方法
+				function GetQueryString(code, state) {
+					var reg = new RegExp("(^|&)" + code + "=([^&]*)(&|$)");
+					var r = window.location.search.substr(1).match(reg);
+					var r1 = window.location.search.substr(2).match(reg);
+					if(r != null) return unescape(r[2]);
+					return null;
+					if(r1 != null) return unescape(r[3]);
+					return null;
+				}
+				//					function getParmFormUrl(name){
+				//				      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+				//				      var id = window.location.search.substr(1).match(reg);
+				//				      if (id != null)
+				//				      return decodeURI(id[2]);
+				//				      return null;
+				//				    }
+				window.onload = function() {
+					var code = GetQueryString("code");
+					var state = GetQueryString("state");
+
+					function GetRequest() {
+						var url = location.search; //获取url中"?"符后的字串
+						var theRequest = new Object();
+						if(url.indexOf("?") != -1) {
+							var str = url.substr(1);
+							strs = str.split("&");
+							for(var i = 0; i < strs.length; i++) {
+								theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+							}
+						}
+						return theRequest;
+					}
+					var Request = new Object();
+					Request = GetRequest();
+					var uId = decodeURI(Request["uId"]); //以什么分割
+
+					sessionStorage.setItem('uId', uId)
+					
+					if(code != null) {
+						$.ajax({
+							type: 'post',
+							// url:"http://17s208e134.iask.in:12615/qingmuyijia/getOpenId/process.do",
+							url: hua + 'getOpenId/process.do',
+							async: false,
+							data: {
+								code: code,
+								state: state
+							},
+							success: function(Getdata) {
+								console.log(Getdata);
+								var openid = JSON.stringify(Getdata.openid)
+								var myopenId = JSON.parse(openid)
+								var nickname = JSON.stringify(Getdata.nickname)
+								var headimgurl = JSON.stringify(Getdata.headimgurl)
+								localStorage.setItem('codeId',myopenId)
+								localStorage.setItem("myopenId", JSON.stringify(myopenId));
+								
+								localStorage.setItem("nickname", JSON.stringify(nickname));
+								localStorage.setItem("headimgurl", JSON.stringify(headimgurl));
+							},
+							error: function(err) {
+								console.log("网络请求错误");
+							}
+						});
+					}
+				}
+			})
+		</script>
+		<script>
+			//shareJDK();
+			$(function() {
+				//三级联动
+				var cityPicker3 = new mui.PopPicker({
+					layer: 3
+				});
+				cityPicker3.setData(cityData3);
+				var showCityPickerButton = document.getElementById('pos_img');
+				var cityResult3 = document.getElementById('pos');
+				pos.addEventListener('tap', function(event) {
+					cityPicker3.show(function(items) {
+						cityResult3.value = (items[0] || {}).text + " " + (items[1] || {}).text + " " + (items[2] || {}).text;
+					});
+				}, false);
+				//时间控件
+				$.datetimepicker.setLocale('en');
+				$('#time').datetimepicker({
+					dayOfWeekStart: 1,
+					lang: 'en'
+				});
+				$('#time').datetimepicker({
+					value: '',
+					step: 10
+				});
+
+				var price = document.getElementById("price");
+				var mianji = document.getElementById("mianji");
+				$.ajax({
+					type: "post",
+					url: hua + "OrderInfoController/queryDisCountManage.do",
+					async: true,
+					data: {
+						plan: "01"
+					},
+					success: function(data) {
+						console.log(JSON.stringify(data));
+						var discountManage = JSON.stringify(data.discountManage.discountPercent);
+						var jiage = JSON.parse(discountManage);
+						var codes = JSON.stringify(data.code);
+						var Mcode = JSON.parse(codes);
+						sessionStorage.setItem('jiage',jiage)
+						//var st = "单价" + jiage + "元/平方米（建筑面积";
+						var st=jiage;
+						$(".everyPrice").append(st);
+						$("#mianji").bind('input propertychange', function() {
+							if(mianji == null || mianji == "") {
+								price.css({
+									'color': 'red'
+								}).value("请输入面积");
+							} else {
+								if(Mcode == 0000) {
+									$("#price").val((parseInt(mianji.value) * (jiage)));
+								} else {
+									alert(JSON.stringify(data.message));
+								}
+							}
+
+						});
+						
+					},
+					error: function() {
+						console.log("网络错误");
+					}
+				});
+
+			})
+				
+				$('#pass').on('blur',function(){
+					var codeId=localStorage.getItem('codeId')
+					//var codeId='o4MQQw4BBswmhoJhrORsdchH45uM'
+					
+					pass=$('#pass').val();
+					var area=$('#mianji').val();
+					
+					if(pass!=''){
+						if(area==''){
+							alert('请输入面积')
+						}else{
+							$.ajax({
+					            type: "POST",
+					            url: hua + "/invitationCodeController/validateCode.do",
+					            contentType:'application/json;charset=utf-8',
+					            dataType: "JSON",
+					            data:JSON.stringify({
+					                "code":pass,
+					                "openid":codeId
+					            }),
+					            success: function(data) {
+					                console.log(data)
+					                if(data.code==202){
+					                   alert(data.message)
+					                   $('#pass').val('')
+									var ge= parseFloat(sessionStorage.getItem('jiage'));
+									var mian=parseFloat($('#mianji').val());
+									$('.everyPrice').html(ge);
+									$('#price').val(mian*ge)
+					                }else if(data.code==203){
+					                    alert(data.message)
+					                }else if(data.code==0000){
+									
+					                	var everyMoney=parseFloat($('.everyPrice').html())/2;
+									
+					                	$('.everyPrice').html(everyMoney);
+					                	var allMoney=parseFloat($('#price').val())/2;
+					                	$('#price').val(allMoney)
+										
+					                }
+					            }
+					        })
+						}
+					}else{
+						pass=''
+					}
+					
+				})
+			$("#btn").click(function() {
+				var _openid = JSON.parse(localStorage.getItem("myopenId"));
+				
+				var data=new Date();
+				var time=$('#time').val();
+				console.log(time)
+				if(time!=''){
+					var data1=new Date(time).getTime();
+					var time2=data.getTime();
+					console.log(data1,time2)
+					if(data1<time2){
+						alert('施工时间不能小于当前时间')
+						return false;
+					}
+				}
+				
+				Getdate();
+			});
+			//显示隐藏键盘
+			$("#zd_use").click(function() {
+				getuser();
+			});
+			//用户的唯一标识
+			var _openid = JSON.parse(localStorage.getItem("myopenId"));
+			//console.log(_openid);
+			//			console.log(openidss);
+			//在线下单
+			var MyData = "";
+
+			function Getdate() {
+				
+				var pos = $("#pos").val();
+				var pos_xq = $("#pos_xq").val();
+				var positions = pos + pos_xq;
+				var name = $("#name").val();
+				var time = $("#time").val();
+				var tel = $("#tel").val();
+				//console.log(time);			
+				var mianji = $("#mianji").val();
+				var price = $("#price").val();
+				var Zd_tel = $("#Zd_tel").val();
+				var pass=$('#pass').val();
+				
+				//存值
+				localStorage.setItem("time", JSON.stringify(time));
+				var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+				if(pos_xq == null || pos_xq == "" && name == null || name == "" && tel == null || tel == "" && mianji == null || mianji == "") {
+					alert("信息不完整");
+				} else if(!myreg.test(tel)) {
+					alert("电话号码不合法");
+					return;
+				} else if(Zd_tel == null || Zd_tel == "") {
+					$.ajax({
+						type: "POST",
+						url: hua + "OrderInfoController/addOrder.do",
+						async: true,
+						data: {
+							code:pass,
+							name: name,
+							telephone: tel,
+							areaQuantity: mianji,
+							totalPrice: price,
+							appointmentTime: time, //时间
+							constructionAddress: positions,
+							orderType: "00",
+							openId: _openid,
+							account: Zd_tel,
+							falg: "wx"
+						},
+						dataType: "JSON",
+						success: function(data) {
+
+							MyData = JSON.stringify(data);
+							//							var resr=JSON.stringify(data.object.reserveConstructDateTime);
+							//							console.log(resr+"jdjd");
+							console.log(data.orderInfo);
+							var orderNo = JSON.stringify(data.orderInfo.orderNo);
+							console.log(orderNo + "编号");
+							var order = JSON.parse(orderNo);
+							console.log(order);
+							var _name = JSON.stringify(data.orderInfo.orderUserName);
+							name = JSON.parse(_name);
+							var _tel = JSON.stringify(data.orderInfo.moblNo);
+							var my_tel = JSON.parse(_tel);
+							console.log(tel + "fdkfnjkngkjffngjkffngkjngjnjnj");
+							var _mianji = JSON.stringify(data.orderInfo.constructArea);
+							mianji = JSON.parse(_mianji);
+							var _price = JSON.stringify(data.orderInfo.orderTxnAmt);
+							price = JSON.parse(_price);
+							var _positions = JSON.stringify(data.orderInfo.orderAddress);
+							positions = JSON.parse(_positions);
+							var orderUpdDateTime = JSON.stringify(data.orderInfo.orderCrtDateTime);
+							var Ctime = JSON.parse(orderUpdDateTime);
+							var open = JSON.stringify(data.orderInfo.openId);
+							var openids = JSON.parse(open);
+							console.log(openids);
+							console.log(name + "   " + tel + "   " + time + "  " + mianji + "   " + price + "   " + positions + " " + Ctime);
+							localStorage.setItem("mianji", JSON.stringify(mianji));
+							localStorage.setItem("name", JSON.stringify(name));
+							localStorage.setItem("price", JSON.stringify(price));
+							localStorage.setItem("positions", JSON.stringify(positions));
+							localStorage.setItem("order", JSON.stringify(order));
+							localStorage.setItem("Ctime", JSON.stringify(Ctime));
+							localStorage.setItem("tel", JSON.stringify(my_tel));
+							console.log(Ctime);
+							localStorage.setItem("openid", JSON.stringify(openids));
+							var codes = JSON.stringify(data.code);
+							var Mcode = JSON.parse(codes);
+							if(Mcode == 0000) {
+								$("#btn").attr({
+									disabled: true
+								}).val("处理中.....");
+								$("#btn").css({
+									'background': '#666666'
+								});
+								//alert(order);
+								ZhiFu(order);
+							} else if(Mcode ==6666){
+							alert(JSON.stringify(data.message));
+							}
+							else {
+								$("#btn").attr({
+									disabled: false
+								}).val("在线下单");
+								alert(JSON.stringify(data.message));
+							}
+						},
+						error: function() {
+							window.location.href = "fail.html"
+							console.log("网络错误");
+						}
+					});
+				} else {
+					$.ajax({
+						type: "POST",
+						url: hua + "OrderInfoController/addOrder.do",
+						async: true,
+						data: {
+							code: pass,
+							name: name,
+							telephone: tel,
+							areaQuantity: mianji,
+							totalPrice: price,
+							appointmentTime: time, //时间
+							constructionAddress: positions,
+							orderType: "00",
+							openId: _openid,
+							account: Zd_tel
+						},
+						dataType: "JSON",
+						success: function(data) {
+							console.log(JSON.stringify(data.code));
+							var codes = JSON.stringify(data.code);
+							var Mcode = JSON.parse(codes);
+							if(Mcode == 1) {
+								alert(JSON.stringify(data.message));
+							}else if(Mcode ==6666){
+							alert(JSON.stringify(data.message));
+							} 
+							else {
+								if(Mcode == 0000) {
+									var orderNo = JSON.stringify(data.orderInfo.orderNo);
+									console.log(orderNo + "编号");
+									var order = JSON.parse(orderNo);
+									console.log(order);
+									var _userMobilNo = JSON.stringify(data.userMobilNo);
+									var userMobilNo = JSON.parse(_userMobilNo);
+									console.log(userMobilNo + "制定接单人");
+									var _name = JSON.stringify(data.orderInfo.orderUserName);
+									name = JSON.parse(_name);
+									var _tel = JSON.stringify(data.orderInfo.moblNo);
+									var my_tel = JSON.parse(_tel);
+									var _mianji = JSON.stringify(data.orderInfo.constructArea);
+									mianji = JSON.parse(_mianji);
+									var _price = JSON.stringify(data.orderInfo.orderTxnAmt);
+									price = JSON.parse(_price);
+									var _positions = JSON.stringify(data.orderInfo.orderAddress);
+									positions = JSON.parse(_positions);
+									var orderUpdDateTime = JSON.stringify(data.orderInfo.orderCrtDateTime);
+									var Ctime = JSON.parse(orderUpdDateTime);
+									console.log(name + "   " + tel + "   " + time + "  " + mianji + "   " + price + "   " + positions + " " + Ctime);
+									localStorage.setItem("name", JSON.stringify(name));
+									localStorage.setItem("tel", JSON.stringify(my_tel))
+									localStorage.setItem("mianji", JSON.stringify(mianji));
+									localStorage.setItem("price", JSON.stringify(price));
+									localStorage.setItem("positions", JSON.stringify(positions));
+									localStorage.setItem("order", JSON.stringify(order));
+									localStorage.setItem("Ctime", JSON.stringify(Ctime));
+									//ZhiFu(order,userMobilNo);
+									ZhiFu(order, userMobilNo);
+									$("#btn").attr({
+										disabled: true
+									}).val("处理中.....");
+									$("#btn").css({
+										'background': '#666666'
+									});
+								} else {
+									//								$("#btn").attr({disabled:false}).val("处理中.....");
+									alert(JSON.stringify(data.message));
+								}
+							}
+							console.log(Mcode);
+							console.log(codes);
+							console.log(data.orderInfo);
+
+						},
+						error: function() {
+							//window.location.href = "fail.html"
+							console.log("网络错误");
+						},
+						complete: function(XMLHttpRequest, status) { //请求完成后最终执行参数
+							if(status === 'timeout') { //超时,status还有success,error等值的情况
+								$("#btn").attr('disabled', false).val("在线支付");
+								return false;
+							}
+						}
+
+					});
+				}
+			}
+
+			//调后台支付接口
+			function ZhiFu(order, userMobilNo) {
+				//用户的唯一标识_openid
+				console.log(_openid);
+				$.ajax({
+					type: "post",
+					url: hua + "buyRecordController/findapily.do",
+					dataType: "json",
+					data: {
+						orderNo: order,
+						channel: "wx_pub",
+						//channel:"wx",
+						userType: "00",
+						openId: _openid,
+						falg: "wx"
+						//							orderNo:'82017080213555230438091244839713',
+						//							channel:"wx_pub",
+						//							userType:"00",
+						//							openId:'o4MQQw4BBswmhoJhrORsdchH45uM'
+
+					},
+					success: function(dt) {
+
+						console.log(JSON.stringify(dt));
+						var charge = JSON.stringify(dt.charge);
+						var orderN = JSON.stringify(dt.orderNo);
+						var Number = JSON.parse(orderN);
+						var txnS = JSON.stringify(dt.txnSsn);
+						var txnSsn = JSON.parse(txnS);
+						console.log(Number);
+						console.log(txnSsn);
+						var code = JSON.stringify(dt.code);
+						var Mcode = JSON.parse(code);
+						if(Mcode == 0000) {
+							Ping(charge, Number, txnSsn, userMobilNo);
+						} else {
+							alert(JSON.stringify(dt.message + "失败"));
+						}
+
+					},
+					error: function() {
+						console.log("网络错误");
+					}
+				});
+			}
+			//ping++
+			function Ping(charge, Number, txnSsn, userMobilNo) {
+				pingpp.createPayment(charge, function(res, err) {
+					console.log(err);
+					//后台成功的回调函数
+					$.ajax({
+						type: "post",
+						url: hua + "buyRecordController/callBack.do",
+						async: true,
+						dataType: "json",
+						data: {
+							txnSsn: txnSsn, //订单流水号
+							orderNo: Number, //订单号
+							txnFinalStat: res, //通道最终状态
+							moblNo: userMobilNo, //手机号
+							userTp: "00", //用户类型
+						},
+						success: function(data) {
+							console.log(JSON.stringify(data));
+							var codes = JSON.stringify(data.code);
+							var Mcode = JSON.parse(codes);
+							if(res == "success") {
+								//console.log(result);
+								window.location.href = "success_order.html";
+
+							} else if(res == "fail") {
+								location.href = "fail.html";
+								// charge 不正确或者微信公众账号支付失败时会在此处返回
+							} else if(res == "cancel") {
+								window.location.href = "fail.html";
+								// 微信公众账号支付取消支付
+							}
+
+						},
+						error: function() {
+							console.log("网络出错");
+						}
+					});
+				});
+			}
+		</script>
+	</body>
+
+</html>

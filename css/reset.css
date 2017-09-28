@@ -1,0 +1,235 @@
+@charset "TUF-8";
+/*样式重置，保证各个浏览器样式相同*/
+
+/*检索或设置移动端页面中对象文本的大小调整*/
+/*该属性只在移动设备上生效*/
+/*chrome 版本低于 27 也生效*/
+/*
+html{
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+*/
+
+/*统一各个浏览器标签样式*/
+body, dl, dd, ul, ol, h1, h2, h3, h4, h5, h6, pre, form, button, input, textarea, p, option, menu, fieldset, legend{
+    border: none 0;
+    margin: 0px;
+    padding: 0px;
+}
+
+/*inherit 只在IE8以上有用*/
+/*HTML5 媒体文件跟 img 保持一致*/
+audio, canvas, video{
+    display: inline-block;
+}
+input, textarea, select{
+    font-size: 100%; 
+}
+
+/*针对移动端的按钮样式*/
+input[type="submit"], input[type="button"], input[type="text"], input[type="password"], input[type="search"], input[type="email"] {
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* 去掉各Table  cell 的边距并让其边重合 */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* IE bug fixed: th 不继承 text-align*/
+th {
+    text-align: inherit;
+}
+
+/*禁止使用文本框输入法*/
+input:password {
+    ime-mode: disabled
+}
+
+/* 去除默认边框 */
+fieldset, img {
+    border: 0;
+}
+
+/* ie6 7 8(q) bug 显示为行内表现 */
+iframe {
+    display: block;
+}
+
+/* 去掉 firefox 下此元素的边框 */
+/*显示缩写标签 有 title 属性*/
+/*acronym IE5.5下不支持 HTML5被 abbr 代替*/
+/*abbr IE6以下不支持*/
+abbr, acronym {
+    border: 0;
+    font-variant: normal;
+}
+
+/* 一致的 del 样式 */
+del{
+    text-decoration: line-through;
+}
+
+/*统一标签字体样式*/
+h1, h2, h3, h4, h5, h6 { 
+    font-size: 100%; 
+    font-weight: 500;
+}
+
+address, caption, cite, code, dfn, em, th, var {
+    font-style: normal;
+    font-weight: 500;
+}
+
+q:before, q:after {
+    content: '';
+}
+
+/*输入框禁止拖动与高亮*/
+textarea {
+    -webkit-tap-highlight-color: transparent;
+    resize: none;
+}
+
+/* 去掉列表前的标识, li 会继承 */
+ol, ul, menu, dir {
+    list-style: none;
+}
+
+/* 对齐是排版最重要的因素, 别让什么都居中 */
+caption, th {
+    text-align: left;
+}
+
+/* 统一上标和下标 */
+sub, sup {
+    font-size: 75%;
+    line-height: inherit;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+/*图片样式统一*/
+img{
+    display: block;
+    width: inherit;
+    height: inherit;
+}
+
+/* 正常链接 未访问 */
+a {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* 鼠标悬停 */
+a:hover {
+    color: #181c2a;
+    text-decoration: none;
+}
+
+/* 默认不显示下划线，保持页面简洁 */
+ins, a {
+    text-decoration: none;
+}
+
+/*IE 解决 a 标签虚线*/
+/*chrome 默认黄色框问题修复*/
+a:focus, input:focus, textarea:focus {
+    outline: none;
+}
+
+/*文本可以被选择*/
+body {
+    -webkit-user-select: text;
+    user-select: text;
+}
+
+/*兼容ios下点击出现系统默认菜单*/
+a, img {
+    -webkit-touch-callout: none
+}
+
+/*清除a标签活动的下划线*/
+a:visited, a:link, a:active{
+    text-decoration: none;
+}
+
+/* 清理浮动 */
+.fn-clear:before, .fn-clear:after, .clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+}
+
+.fn-clear:after, .clearfix:after {
+    clear: both;
+}
+
+.fn-clear, .clearfix {
+    zoom: 1;
+    /* for IE6 IE7 */
+}
+
+/*隐藏, 配合js*/
+.fn-hide{
+    display: none !important;
+}
+
+/* 设置内联, 减少浮动带来的bug */
+.fn-left {
+    float: left;
+}
+
+.fn-right {
+    float: right;
+}
+
+/* 单行文字溢出时出现省略号，需设定宽度 */
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*定义文本对齐方式*/
+.text-left{
+    text-align: left;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.text-right{
+    text-align: right;
+}
+
+/*初始化 body 样式*/
+body{
+   
+    line-height: 1.5;
+    font-family: "Microsoft Yahei", Arial, "sans-serif";
+    color: #000;
+}
+/*初始化 a 标签样式*/
+a{
+    font-size: 14px;
+    color: #333;
+}
+
+a:hover{
+   color:#01b5f3; 
+}
+.clear:after{display:block;clear:both;content:"";visibility:hidden;height:0}
+.clear{zoom:1}

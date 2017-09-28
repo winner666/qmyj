@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>我的钱包</title>
+		<style type="text/css">
+			*{padding:0;margin:0;}
+			body,html{
+				width: 100%;
+				height: 100%;
+			}
+			body{
+				background: #EEEEEE;
+			}
+			.box{
+				background:#fff ;
+				text-align: center;
+				padding-top: 30px;
+			}
+		    .head{		    
+		    	width: 80px;
+		    	height: 80px;
+		    	border-radius: 50%;
+		    	margin: 0 auto;
+		    	overflow: hidden;
+		    }
+		    .head img{
+		    	width: 100%;
+		    	height: 100%;
+		    	
+		    }
+		    .name{
+		    	margin: 15px 0;
+		    }
+		    .money{
+		    	color: #f5818a;
+		    	padding-bottom: 15px;
+		    }
+			.btn{
+				width: 35%;
+				margin:30px 5%;
+				background: #00C256;
+				color: #fff;
+				text-align: center;
+				line-height: 40px;			
+				border-radius: 5px;
+				float: right;
+			}
+			.cash{
+				width: 35%;
+				margin:30px 5%;
+				background: #00C256;
+				color: #fff;
+				text-align: center;
+				line-height: 40px;			
+				border-radius: 5px;
+				float: left;
+			}
+			a{
+				text-decoration: none;
+				color: #fff;
+				display: block;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="head">
+				<img src="../img/5521.png"/>
+			</div>
+			<div class="name"></div>
+			<div class="money"><span>￥</span><span class="yuMoney">0</span></div>
+		</div>	
+		<div class="cash"><a href="record.html">交易记录</a></div><div class="btn"><a href="money.html">提现</a></div>
+	</body>
+	<script type="text/javascript" src="../mui/js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="../js/ip.js"></script>
+	<script type="text/javascript">
+		$(function(){			
+			
+					//发送授权请求，等待用户授权界面结束，请求后授权信息通过微信回调到后台，后台帮助获取用户信息
+//					function GETurl(){
+						//window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8f600f6da5379290&redirect_uri=http://www.qianmocn.com/qmyj/view/shareAB.html&response_type=code&scope=snsapi_userinfo&state=reexjgs#wechat_redirect";
+						//window.location.href="https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx8f600f6da5379290&secret=4f0d57ce5457b486ab7b93bfd0f53380&code= "+code+"&grant_type=authorization_code";
+//					}
+					//授权界面结束后紧接着向后台发送获取用户信息请求
+//					获取openID方法
+					function GetQueryString(code,state) {
+						var reg = new RegExp("(^|&)" + code + "=([^&]*)(&|$)");
+						var r = window.location.search.substr(1).match(reg);
+						var r1 = window.location.search.substr(2).match(reg);
+						if(r != null) return unescape(r[2]);
+						return null;
+						if(r1 != null) return unescape(r[3]);
+						return null;
+					}
+					window.onload = function() {
+						
+						var code = GetQueryString("code");
+						var state=GetQueryString("state");
+						console.log(code);
+						console.log(state);
+						 if(code!= null){
+					        $.ajax({
+								type:'post',
+					           // url:"http://17s208e134.iask.in:12615/qingmuyijia/getOpenId/process.do",
+					           url:hua+'getOpenId/process.do',
+					            async: false,
+					            data:{
+					                code:code,
+									state:state
+								
+					            },
+					            success:function(Getdata){
+									console.log(Getdata);
+									var openid=JSON.stringify(Getdata.openid)
+									var myopenId=JSON.parse(openid)
+									var nickname=JSON.stringify(Getdata.nickname)
+									var headimgurl=JSON.stringify(Getdata.headimgurl)	
+									
+									nickname=JSON.parse(nickname)
+									headimgurl=JSON.parse(headimgurl)
+									$('.head img').attr('src',headimgurl);
+									$('.name').html(nickname);
+									var country=JSON.stringify(Getdata.country)
+									var province=JSON.stringify(Getdata.province)
+									var city=JSON.stringify(Getdata.city)
+									
+									money(myopenId)
+									localStorage.setItem("myopenId", JSON.stringify(myopenId));
+									localStorage.setItem('openid',myopenId)
+									localStorage.setItem("nickname", JSON.stringify(nickname));
+									localStorage.setItem("headimgurl", JSON.stringify(headimgurl));
+									localStorage.setItem('country',country);
+									localStorage.setItem('province',province);
+									localStorage.setItem('city',city);
+					            },
+					            error: function (err) {
+					            	console.log("网络请求错误");
+					            }
+					        });
+					}						 
+		}
+					
+				
+	})
+		
+		function money(openid){
+		$.ajax({
+			type: "POST",								
+			url: hua + "userWechatController/getUserWechat.do",								
+			contentType:'application/json;charset=utf-8',
+			dataType: "JSON",
+			data:JSON.stringify({
+				"openid": openid,
+				
+			}),
+			success: function(data) {
+				console.log(data)
+				if(data.code==0000){
+					$('.yuMoney').html(data.obj.balance)
+					localStorage.setItem('money',data.obj.balance)
+				}else if(data.code==201){
+					alert('服务器错误')
+				}else if(data.code==007){
+					$('.yuMoney').html(0)
+					localStorage.setItem('money',0)
+				}
+			}
+		})
+	}
+	</script>
+	<script>
+		
+	</script>

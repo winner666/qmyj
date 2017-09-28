@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>提现成功</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<script type="text/javascript" src="../js/weixin-1.2.0.js" ></script>
+		<script type="text/javascript" src="../mui/js/jquery-1.8.3.js"></script>
+		<style>
+			*{
+				margin: 0PX;
+				padding: 0PX;
+			}
+			.failBtn{
+				margin:0 auto;
+				width: 30%;margin-left: 35%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="fail_bg">
+			<div class="fail_img">
+				<img src="../img/success.png"/>
+			</div>
+			<p class="fail_content">提现成功</p>
+			<div class="fail_btn">
+				<div class="fail_up failBtn">确定</div>
+				
+			</div>
+			<script>
+				$(".failBtn").click(function(){
+					window.location.href="money.html";
+				});
+			</script>
+		</div>
+	</body>
+
+</html>

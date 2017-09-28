@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../js/rem.js" />
+		<title>青木宜家</title>
+		<style type="text/css">
+			*{padding:0;margin:0;}
+			body,html{
+				width: 100%;
+			height: 100%;
+			
+			}
+			body{
+				height: 100%;
+				
+				
+				background: url(../img/bg.png) no-repeat 0 0;
+				background-size:100% 100%;
+			}
+			.top{
+				display: block;
+				width: 18rem;
+				height:9rem;
+				margin:50px auto 0;
+				
+			}
+			.top img{
+				display: block;
+				width: 100%;
+				height: 100%;
+			}
+			.warp{
+				height: 100%;
+				overflow: auto;
+			}
+			
+			.er{
+				
+			text-align: center;
+			margin-bottom: 30px;
+				
+			}
+			.box{								
+				margin:20px 30px 0 30px;
+			}
+			.title{font-weight:bold;margin:10px 0 5px 0;}
+			.ward{line-height: 28px;font-size: 15px;}
+			.btn{
+				color:#fff;background:#459F45;text-align: center;border-radius: 5px;line-height: 30px;margin: 30px 0;
+			}
+			.textImg{
+				width: 6rem;
+				height:6rem;
+				margin:20px auto;
+				
+			}
+			.textImg img{
+				display: block;
+				width: 100%;
+				height: 100%;
+			}
+			.text{
+				display: none;
+				text-align: center;
+				margin-bottom: 30px;
+			}
+		
+		</style>
+		
+	</head>
+	<body>
+		<div class="warp">
+			<div class="top">
+				<img src="../img/top.png" alt="" />
+			</div>
+			
+			<div class="box">
+				<div class="title">推荐介绍：</div>
+				<div class="ward">
+					当您的朋友关注青木易家公众号并使用您的专属推荐码下单
+                                                 成功，您将获得订单总额5%的推荐答谢费。
+				</div>
+				<div class="title">推荐赚钱参与方式：</div>
+				<div class="ward">
+					点击（我要推荐）按钮，会自动生成青木易家公众号二维码
+和您的专属推荐码。点击右上角分享，可以把海报推荐给朋
+友关注青木易家公众号。也可将推荐海报截屏保存，然后推
+荐给朋友关注青木易家公众号。
+				</div>
+				<div class="title">兑换方式：</div>
+				<div class="ward">
+					推荐答谢费可在赚钱中心:我的钱包中确认并提现。
+
+				</div>
+			<div class="btn">推荐</div>
+				<div class="text">
+					<div class="textImg"><img src="../img/er.png"/></div>
+					<div class="er"></div>			
+					<div class="">扫码关注&nbsp;线上下单</div>
+					<div>全国各地上门施工&nbsp;保质平价&nbsp;无效退款</div>
+				</div>
+				
+			</div>
+			
+		</div>
+		
+		<script type="text/javascript" src="../mui/js/jquery-2.2.3.min.js"></script>
+		<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>	
+		<script type="text/javascript" src="../js/ip.js"></script>
+		
+		<!--<script src="../js/wxConfig.js"></script>-->
+
+		<script>
+			$(function(){
+					//发送授权请求，等待用户授权界面结束，请求后授权信息通过微信回调到后台，后台帮助获取用户信息
+//					function GETurl(){
+						//window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8f600f6da5379290&redirect_uri=http://www.qianmocn.com/qmyj/view/shareAB.html&response_type=code&scope=snsapi_userinfo&state=reexjgs#wechat_redirect";
+						//window.location.href="https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx8f600f6da5379290&secret=4f0d57ce5457b486ab7b93bfd0f53380&code= "+code+"&grant_type=authorization_code";
+//					}
+					//授权界面结束后紧接着向后台发送获取用户信息请求
+//					获取openID方法
+					function GetQueryString(code,state) {
+						var reg = new RegExp("(^|&)" + code + "=([^&]*)(&|$)");
+						var r = window.location.search.substr(1).match(reg);
+						var r1 = window.location.search.substr(2).match(reg);
+						if(r != null) return unescape(r[2]);
+						return null;
+						if(r1 != null) return unescape(r[3]);
+						return null;
+					}
+					window.onload = function() {
+						var code = GetQueryString("code");
+						var state=GetQueryString("state");
+//						alert(code);
+//						alert(state)
+					
+						 if(code!= null){
+					        $.ajax({
+								type:'post',
+					           // url:"http://17s208e134.iask.in:12615/qingmuyijia/getOpenId/process.do",
+					           url:hua+'getOpenId/process.do',
+					            async: false,
+					            data:{
+					                code:code,
+									state:state
+					            },
+					            success:function(Getdata){
+									console.log(Getdata);
+									var openid=JSON.stringify(Getdata.openid)
+									var myopenId=JSON.parse(openid)
+									var nickname=JSON.stringify(Getdata.nickname)
+									var headimgurl=JSON.stringify(Getdata.headimgurl)
+									localStorage.setItem('uid',myopenId)
+									localStorage.setItem("myopenId", JSON.stringify(myopenId));
+									//console.log(myopenId+"我的openid")
+									localStorage.setItem("nickname", JSON.stringify(nickname));
+									localStorage.setItem("headimgurl", JSON.stringify(headimgurl));
+									 pass(myopenId)
+									
+					            },
+					            error: function (err) {
+					            	console.log("网络请求错误");
+					            }
+					        });
+					}
+		}
+		
+		function pass(myopenId){
+					$.ajax({
+		            type: "POST",
+		            url: hua + "invitationCodeController/obtainCode.do",
+		            contentType:'application/json;charset=utf-8',
+		            dataType: "JSON",
+		            data:JSON.stringify({
+		               
+		              "openId": myopenId,
+		             // "openId": 'o4MQQw4BBswmhoJhrORsdchH45uM'
+		              
+		            }),
+		            success: function(data) {
+		                console.log(data)
+		                if(data.code==0000){
+		                	 passCode=data.obj.code;
+		                	$('.er').html('推荐码:'+passCode)
+		                	sessionStorage.setItem('passCode',passCode)
+		                }
+		               
+		            }
+		        })
+			}		
+		
+		$('.btn').on('click',function(){
+			$(this).hide();
+			$('.text').show()
+		})
+		
+		
+		
+	})
+			
+		
+	var busAgentCode=window.location.href;
+	$(function(){
+	  var codeNum=localStorage.getItem('uid');
+	
+	$.ajax({
+		url : hua+"wechat/access_token.do",
+		type : "post",
+		 contentType: "application/x-www-form-urlencoded;charset=utf-8",
+		data : {url:busAgentCode},		
+		timeout : 2000,
+		cache : false,
+		async:false,
+		success : function(data) {
+			console.log(data)
+			wx.config({
+			      debug: false,
+			      appId: "wx8f600f6da5379290",
+			      timestamp: data.timestamp,
+			      nonceStr: data.nonceStr,
+			      signature: data.signature,
+			      jsApiList: [
+			                  'onMenuShareAppMessage',
+			                  'onMenuShareTimeline',
+			                  'onMenuShareQQ',
+			                  'onMenuShareQZone',
+			                  'onMenuShareWeibo'
+			      ]
+			  });
+			 wx.ready(function(){
+			 	var openid=localStorage.getItem('myopenId')
+			 	var passCode=sessionStorage.getItem('passCode')
+			 	var atitle =   "青木易家";
+					var wxcontext =  "青木易家";
+					var sharelink  = "http://qmyj.100dz.cn/qmyj/view/share.html?passCode="+passCode;
+					var shareimg ="http://qmyj.100dz.cn/qmyj/img/logo1.png";
+					
+				 wx.onMenuShareAppMessage({
+					 	title:atitle, // 分享标题
+					    desc:wxcontext , // 分享描述
+					    link: sharelink, // 分享链接
+					    imgUrl: shareimg, // 分享图标
+					    success: function () { 
+					        // 用户确认分享后执行的回调函数
+							
+					    },
+					    cancel: function () { 
+					        // 用户取消分享后执行的回调函数
+					    }
+					});
+				 wx.onMenuShareTimeline({
+					title:atitle, // 分享标题
+					    desc:wxcontext , // 分享描述
+					    link: sharelink, // 分享链接
+					    imgUrl: shareimg, // 分享图标
+					 success: function () { 
+					       // 用户确认分享后执行的回调函数
+					 },
+					 cancel: function () { 
+					        // 用户取消分享后执行的回调函数
+					 }
+					});
+				 wx.onMenuShareQQ({
+					title:atitle, // 分享标题
+					    desc:wxcontext , // 分享描述
+					    link: sharelink, // 分享链接
+					    imgUrl: shareimg, // 分享图标
+				    success: function () { 
+				       // 用户确认分享后执行的回调函数
+				    },
+				    cancel: function () { 
+				       // 用户取消分享后执行的回调函数
+				    }
+				});
+				 wx.onMenuShareQZone({
+					 title:atitle, // 分享标题
+					    desc:wxcontext , // 分享描述
+					    link: sharelink, // 分享链接
+					    imgUrl: shareimg, // 分享图标
+					    success: function () { 
+					       // 用户确认分享后执行的回调函数
+					    },
+					    cancel: function () { 
+					       // 用户取消分享后执行的回调函数
+					    }
+					});
+				 wx.onMenuShareWeibo({
+					 	title:atitle, // 分享标题
+					    desc:wxcontext , // 分享描述
+					    link: sharelink, // 分享链接
+					    imgUrl: shareimg, // 分享图标
+					    success: function () { 
+					       // 用户确认分享后执行的回调函数
+					    },
+					    cancel: function () { 
+					       // 用户取消分享后执行的回调函数
+					    }
+					});
+				    // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+				});
+			 wx.error(function(res){
+				    // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+			 });
+		} 
+	});	
+});
+
+			
+
+		</script>	
+		
+	</body>
+</html>

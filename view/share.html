@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>青木宜家</title>
+		<style type="text/css">
+			*{padding:0;margin:0;}
+			body,html{
+				width: 100%;
+				height: 100%;
+			}
+			div{
+				height: 100%;
+			}
+			img{
+				display: block;
+				width: 100%;
+				height: 100%;
+			}
+			.er{
+				position: absolute;
+				width: 30%;
+				height:18%;
+			
+				z-index: 20;
+				top:66%;
+				left:35%;
+				
+			}
+		</style>
+		
+	</head>
+	<body>
+		<div>
+			<img src="../img/logo3.png"/>
+			<div class="er">
+				
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="../mui/js/jquery-2.2.3.min.js"></script>
+		<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>	
+		<script type="text/javascript" src="../js/ip.js"></script>
+		
+		<!--<script src="../js/wxConfig.js"></script>-->
+
+		<script>
+			$(function(){
+					
+				function GetRequest() {
+						var url = location.search; //获取url中"?"符后的字串
+						var theRequest = new Object();
+						if(url.indexOf("?") != -1) {
+							var str = url.substr(1);
+							strs = str.split("&");
+							for(var i = 0; i < strs.length; i++) {
+								theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+							}
+						}
+						return theRequest;
+					}
+					var Request = new Object();
+					Request = GetRequest();
+					var code = decodeURI(Request["passCode"]); //以什么分割
+					alert(code)
+					$('.er').html('推荐码：'+code)
+			})
+			
+	
+			
+
+		</script>	
+		
+	</body>
+</html>

@@ -1,0 +1,108 @@
+{
+  "view/shareAB.html": {
+    "resources": [
+      "mui/js/mui.poppicker.js",
+      "img/F_m.png",
+      "mui/js/city.data-3.js",
+      "mui/js/mui.js",
+      "img/phone.png",
+      "css/style.css",
+      "mui/js/jquery-1.8.3.js",
+      "css/mui.picker.css",
+      "css/jquery.datetimepicker.css",
+      "img/user.png",
+      "img/price.png",
+      "mui/js/city.data.js",
+      "css/mui.min.css",
+      "img/logo.png",
+      "js/jquery.datetimepicker.full.js",
+      "css/mui.poppicker.css",
+      "img/right.png",
+      "mui/js/mui.picker.js",
+      "img/time.png",
+      "img/postition.png",
+      "view/success_order.html",
+      "view/fail.html",
+      "js/weixin-1.2.0.js",
+      "css/share.css"
+    ],
+    "refer": [
+      "view/fail.html",
+      "view/success_order.html"
+    ]
+  },
+  "view/fail.html": {
+    "resources": [
+      "img/fail.png",
+      "css/mui.min.css",
+      "css/style.css",
+      "js/weixin-1.2.0.js"
+    ],
+    "refer": []
+  },
+  "view/success_order.html": {
+    "resources": [
+      "img/success.png",
+      "img/time_bf.png",
+      "img/phone_bf.png",
+      "img/user_bf.png",
+      "img/postition_bf.png",
+      "img/price_bf.png",
+      "img/fm_bf.png",
+      "css/style.css",
+      "mui/js/jquery-1.8.3.js",
+      "js/doT.js",
+      "js/weixin-1.2.0.js"
+    ],
+    "refer": []
+  },
+  "view/order.html": {
+    "resources": [
+      "img/33.png",
+      "img/price_bf.png",
+      "css/style.css",
+      "mui/js/jquery-1.8.3.js",
+      "img/user_bf.png",
+      "img/phone_bf.png",
+      "img/time_bf.png",
+      "img/37.png",
+      "img/postition_bf.png",
+      "css/mui.min.css",
+      "img/35.png",
+      "img/fm_bf.png",
+      "img/order_right.png",
+      "img/right_order.png",
+      "view/Mpinjia.html",
+      "view/Fpinjia.html",
+      "js/weixin-1.2.0.js"
+    ],
+    "refer": []
+  },
+  "view/Fpinjia.html": {
+    "resources": [
+      "img/63.png",
+      "img/65.png",
+      "css/mui.min.css",
+      "img/67.png",
+      "mui/js/jquery-1.8.3.js",
+      "img/66.png",
+      "img/64.png",
+      "js/jquery.js",
+      "css/index.css",
+      "fonts/iconfont.css",
+      "fonts/iconfont.ttf",
+      "view/Fpinjia.html",
+      "js/weixin-1.2.0.js"
+    ],
+    "refer": [
+      "view/Fpinjia.html"
+    ]
+  },
+  "view/Mpinjia.html": {
+    "resources": [
+      "img/74.png",
+      "img/pj.png"
+    ],
+    "refer": []
+  }
+}

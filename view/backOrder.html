@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/amazeui.min.css" />
+		<title>退单申请</title>
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			
+			body,
+			html {
+				background: #EEEEEE;
+				height: 100%;
+				height: 100%;
+			}
+			
+			.box {
+				margin: 10px auto;
+				width: 90%;
+				overflow: auto;
+				flex: 1;
+				/*margin-bottom: 50px;*/
+			}
+			
+			.result {
+				width: 100%;
+				font-size: 16px;
+				height: 200px;
+				outline: none;
+				text-indent: 2rem;
+				padding-top: 5px;
+				outline: none;
+				border: none;
+			}
+			
+			.btn {
+				background: #00c256;
+				color: #fff;
+				text-align: center;
+				height: 50px;
+				line-height: 50px;
+				/*position: fixed;
+				bottom: 0;
+				left: 0;*/
+				width: 100%;
+				z-index: 10;
+			}
+			
+			.warp {
+				width: 100%;
+				display: -webkit-flex;
+				/* Safari */
+				display: flex;
+				flex-direction: column;
+				height: 100%;
+			}
+			
+			.cma {
+				height: 40px;
+				line-height: 40px;
+				background: #fff;
+				border-radius: 5px;
+				text-align: center;
+				z-index: 8;
+			}
+			
+			#AddPicture {
+				width: 100%;
+				height: 100%;
+			}
+			
+			#adShow {
+				width: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		
+		<div class="warp">
+			<div class="box">
+				<textarea name="" rows="" cols="" placeholder="请详细描述您要退单的原因" class="result"></textarea>
+				<!--<div class="cma">上传CMA检测报告</div>-->
+				<div class="am-form-group tpl-form-line-form">
+
+					<div class="am-u-sm-12">
+						<div class="am-form-group am-form-file" id="adImg">
+							<div class="tpl-form-file-img">
+								<img src="" alt="" id="adShow">
+							</div>
+							<button type="button" class="am-btn  am-btn-sm" style="color:#333;margin-left:23%;">
+                        <i class="am-icon-cloud-upload"></i>上传CMA检测报告</button>
+							<input id="AddPicture" type="file" multiple="">
+						</div>
+					</div>
+				</div>				
+			</div>
+			
+			<div class="btn" >
+				提交申请
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+<script type="text/javascript" src="../mui/js/jquery-2.2.3.min.js"></script>
+<!--<script type="text/javascript" src="../js/imgview.js"> </script>-->
+<script src="../js/qianniuJs/js/moxie.js"></script>
+<script src="../js/qianniuJs/js/plupload.dev.js"></script>
+<script src="../js/qianniuJs/js/qiniu.js"></script>
+<script type="text/javascript" src="../js/ip.js"></script>
+<script src="../js/touch.min.js"></script>
+<script type="text/javascript">
+	
+	
+	$(function() {
+		
+		getTokenMessage();//调取七牛云文件长传方法		
+		var _openid = localStorage.getItem("myopenId");
+		// var _openid = 'o4MQQw0r-redr2zMLbz57hajxceE'
+		//点击申请
+		
+
+	function GetRequest() {
+		var url = location.search; //获取url中"?"符后的字串
+		//console.log(url);
+		var theRequest = new Object();
+		if(url.indexOf("?") != -1) {
+			var str = url.substr(1).split("&");
+			for(var i = 0; i < str.length; i++) {
+				theRequest[str[i].split("=")[0]] = unescape(str[i].split("=")[1]);
+			}
+		}
+		return theRequest;
+	};
+
+	var Request = GetRequest();
+	var orderId = Request.orderId;
+	$('.btn').on('click', function() {
+			
+			
+			var result = $('.result').val();
+			var imgSrc = $('#adShow').attr('src');
+			
+			if(result == '') {
+				alert('请说明理由');
+				return false
+			}
+			if(imgSrc == '') {
+				 alert('请上传图片')
+				return false;
+			}
+			$('.btn').css('background', "#5E5E5E")
+			back(result, imgSrc)
+			console.log(result)
+
+		})
+		function back(result, imgSrc) {
+			console.log(orderId, _openid, result, imgSrc )
+			$.ajax({
+				type: "POST",
+				url: hua + "RetreatOrderController/revokeOrder.do",
+				contentType: 'application/json;charset=utf-8',
+				dataType: "JSON",
+				data: JSON.stringify({
+					"orderNo": orderId,
+					"openId": _openid,
+					"cma": imgSrc,
+					"reason": result
+				}),
+				success: function(data) {
+					console.log(data)
+					if(data.code == 0000) {
+						location.href = 'order.html'
+					} else if(data.code == 201) {
+						alert(data.message)
+					}else{
+						alert(data.message)
+					}
+				}
+			})
+		}
+
+		
+
+	})
+
+	
+
+
+	
+
+	//getTokenMessage();
+	/*获取七牛上传tocken方法
+	 * 在该ajax回调方法中,调用上传控件初始化方法*/
+
+	function getTokenMessage() {
+
+		$.ajax({
+			// url: 'http://192.168.0.169:8072/main/upToken',
+			url: hua + 'main/upToken.do',
+			// url: 'http://116.62.49.14:8072/main/upToken',
+			type: 'POST',
+			data: {},
+			cache: false,
+			contentType: false, //不可缺
+			processData: false, //不可缺
+			dataType: 'json',
+			success: function(data) {
+				var obj = data;
+				//console.log(data);
+				/*	/!*初始化方法, param1:请求tocken|param2上传控件ID*!/*/
+				uploaderReady(obj.upToken, 'AddPicture');
+			}
+		});
+	}
+
+	/*/!*上传图片*!/*/
+	function uploaderReady(token, divId) {
+		//    console.log(token, divId)
+
+		var uploader = Qiniu.uploader({
+			runtimes: 'html5,flash,html4',
+			browse_button: divId, //上传按钮的ID
+			container: adImg, //上传按钮的上级元素ID
+			drop_element: 'btn-uploader',
+			max_file_size: '100mb', //最大文件限制
+			dragdrop: false,
+			chunk_size: '4mb', //分块大小
+			//Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
+			uptoken: token,
+			// 默认 false，key为文件名。若开启该选项，SDK会为每个文件自动生成key（文件名）
+			// save_key: true,
+			// 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK在前端将不对key进行任何处理
+			//domain: 'http://ojantumyo.bkt.clouddn.com/',//自己的七牛云存储空间域名
+			//domain: 'http://osytnx67q.bkt.clouddn.com/',
+			domain: 'http://osytqedas.bkt.clouddn.com/',
+			multi_selection: false, //是否允许同时选择多文件
+			//文件类型过滤，这里限制为图片类型
+			//         
+			//			 filters: {
+			//    		mime_types : [
+			//     		 {title : "Image files", extensions:"jpg,jpeg,gif,png"}
+			//    			]
+			// 			 },
+			auto_start: true,
+			unique_names: true,
+			init: {
+				'FilesAdded': function(up, files) {
+					//do something
+				},
+				'BeforeUpload': function(up, file) {
+					//do something
+				},
+				'UploadProgress': function(up, file) {
+					//可以在这里控制上传进度的显示
+					//可参考七牛的例子
+				},
+				'UploadComplete': function() {
+					//do something
+				},
+				'FileUploaded': function(up, file, info) {
+					//每个文件上传成功后,处理相关的事情
+					//console.log(up)
+					var domain = up.getOption('domain');
+					var res = eval('(' + info + ')');
+					var sourceLink = domain + res.key; //!**获取上传文件的链接地址**
+					//alert(sourceLink);
+					console.log(2)
+					$('#adShow').attr('src', sourceLink);
+
+				},
+				'Error': function(up, err, errTip) {
+					//alert(errTip);
+				},
+				'Key': function(up, file) {
+					//当save_key和unique_names设为false时，该方法将被调用
+					return "";
+				}
+			}
+		});
+		uploader.start();
+	}
+</script>
